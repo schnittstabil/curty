@@ -1,0 +1,29 @@
+{
+  "main": "vendor/autoload.php",
+  "files": [
+    "composer.json"
+  ],
+  "finder": [
+    {
+      "in": "vendor/composer"
+    },
+    {
+      "in": "vendor/schnittstabil"
+    },
+    {
+      "in": "src"
+    }
+  ],
+
+  "compactors": [
+    "Herrera\\Box\\Compactor\\Php",
+    "Herrera\\Box\\Compactor\\Json"
+  ],
+
+  "stub": true,
+  "web": false,
+  "extract": false,
+  "shebang": false,
+
+  "output": "build/curty.phar"
+}

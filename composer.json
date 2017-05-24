@@ -1,0 +1,83 @@
+{
+    "name": "schnittstabil/curty",
+    "type": "library",
+    "description": "Simple curly braces micro templating",
+    "license": "MIT",
+    "keywords": [
+        "simple",
+        "curly",
+        "braces",
+        "micro",
+        "templating",
+        "string",
+        "template",
+        "expand",
+        "placeholders",
+        "format",
+        "formatting",
+        "interpolate",
+        "interpolation",
+        "transform",
+        "values",
+        "fixed-point",
+        "fixpoint",
+        "str",
+        "tpl",
+        "fmt"
+    ],
+    "authors": [
+        {
+            "name": "schnittstabil",
+            "email": "michael@schnittstabil.de"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Schnittstabil\\Curty\\": "src"
+        },
+        "files": ["src/functions.php"]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Schnittstabil\\Curty\\": "tests"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "require": {
+        "php": ">=7",
+        "schnittstabil/get": "^3.1"
+    },
+    "require-dev": {
+        "schnittstabil/phpunit-starter": "^6.0"
+    },
+    "scripts": {
+        "clean": "rm -rf build/ .php_cs.cache",
+        "lint": [
+            "sugared-rim-cs"
+        ],
+        "test": [
+            "@travis",
+            "@lint"
+        ],
+        "travis": [
+            "schnittstabil-phpunit-starter",
+            "tests/usage.php"
+        ],
+        "build": [
+            "./box.phar -V >/dev/null || curl -LSs https://box-project.github.io/box2/installer.php | php",
+            "rm -rf composer.lock vendor/",
+            "composer install",
+            "@clean",
+            "@test",
+            "mkdir build",
+            "rm -rf composer.lock vendor/",
+            "composer install --no-dev",
+            "./box.phar build",
+            "rm -rf composer.lock vendor/",
+            "composer install",
+            "echo upload build/curty.phar at https://github.com/schnittstabil/curty/releases"
+        ]
+    }
+}
