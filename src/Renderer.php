@@ -40,7 +40,7 @@ class Renderer
      */
     public function render(string $tpl, $ctx) : string
     {
-        if (!preg_match_all('/{{([^{]+?)}}/', $tpl, $matches)) {
+        if (!preg_match_all('/{([^{]+?)}/', $tpl, $matches)) {
             return $tpl;
         }
 
@@ -51,7 +51,7 @@ class Renderer
                 continue;
             }
 
-            $tpl = str_replace('{{'.$key.'}}', $this->renderValue($replace), $tpl);
+            $tpl = str_replace('{'.$key.'}', $this->renderValue($replace), $tpl);
         }
 
         return $tpl;
